@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/botones"
-            android:text="@string/login_sign_in"
+            android:text="@string/login_sign_up"
             android:textAllCaps="false"
             android:id="@+id/btn_sign_in"/>
 
