@@ -1,0 +1,26 @@
+<resources>
+    <!--App Name-->
+    <string name="app_name">CooKit</string>
+
+    <!--Login-->
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_login">Login</string>
+    <string name="login_sign_in">Sign In</string>
+    <!--SingIn-->
+    <string name="sign_in_username">Username</string>
+    <string name="sign_in_name">Name</string>
+    <string name="sign_in_lastname">Last name</string>
+    <string name="sign_in_email">E-mail</string>
+    <string name="sign_in_password">Password</string>
+    <string name="sign_in_confirmpassword">Confirm password</string>
+    <string name="sign_in_next">Next</string>
+
+    <!--Home-->
+    <string name="home_home">Home</string>
+
+    <!--Categories-->
+
+    <!--Ingredients-->
+
+</resources>
