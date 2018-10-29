@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "846382865699",
+    "firebase_url": "https://cookit-709c1.firebaseio.com",
+    "project_id": "cookit-709c1",
+    "storage_bucket": "cookit-709c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846382865699:android:35a2ad932c66f8f6",
+        "android_client_info": {
+          "package_name": "icesi.i2t.cookit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846382865699-7pa64nh21s71mlnr6ou42uc1mjtkrs6b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "icesi.i2t.cookit",
+            "certificate_hash": "1e0ec9edd4b1f6924f314ebd7291a7cff8f4e815"
+          }
+        },
+        {
+          "client_id": "846382865699-8a60tduusbunk46019b2k9d8rllehl15.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIr9LvlC_1E96_C4-QUermIHZDZKs6tOc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846382865699-8a60tduusbunk46019b2k9d8rllehl15.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

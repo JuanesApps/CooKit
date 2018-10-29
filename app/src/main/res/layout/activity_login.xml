@@ -25,7 +25,7 @@
             android:background="@drawable/e_text_bg"
             android:hint="@string/login_username"
             android:paddingHorizontal="10dp"
-            android:id="@+id/et_uername"/>
+            android:id="@+id/et_usr"/>
 
     </LinearLayout>
 
