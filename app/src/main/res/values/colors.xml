@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#FF8F00</color>
     <color name="colorAccent">#ffba5c</color>
     <color name="camposTexto">#F5F5F5</color>
-    <color name="colorGray">#E5E5E5</color>
+    <color name="white">#a0ffffff</color>
+    <color name="colorPressed">#af6200</color>
 </resources>

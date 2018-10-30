@@ -18,6 +18,11 @@
 
     <!--Home-->
     <string name="home_home">Home</string>
+    <string name="title_activity_main">CooKit</string>
+    <string name="title_home">Home</string>
+    <string name="title_explore">Explore</string>
+    <string name="title_favourites">Favourites</string>
+    <string name="title_new">New</string>
 
     <!--Categories-->
 

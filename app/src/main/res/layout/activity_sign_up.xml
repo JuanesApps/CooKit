@@ -1,131 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="40dp"
-    android:layout_marginRight="40dp"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:background="@drawable/login_background">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp">
+        android:layout_height="match_parent"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:background="@drawable/white_transparent_bg"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/round_icon"
-            android:src="@drawable/user_icon"
-            android:scaleType="fitXY"/>
-
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/e_text_bg"
-            android:hint="@string/sign_in_name"
-            android:paddingHorizontal="10dp"
-            android:id="@+id/et_name"/>
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/round_icon"
+                android:scaleType="fitXY"
+                android:src="@drawable/user_icon" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/e_text_bg"
+                android:hint="@string/sign_in_name"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/round_icon"
+                android:scaleType="fitXY"
+                android:src="@drawable/user_icon" />
+
+            <EditText
+                android:id="@+id/et_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/e_text_bg"
+                android:hint="@string/sign_in_lastname"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/round_icon"
+                android:scaleType="fitXY"
+                android:src="@drawable/email_icon" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/e_text_bg"
+                android:hint="@string/sign_in_email"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/round_icon"
+                android:scaleType="fitXY"
+                android:src="@drawable/password_logo" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/e_text_bg"
+                android:hint="@string/sign_in_password"
+                android:inputType="textPassword"
+                android:paddingHorizontal="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/round_icon"
+                android:scaleType="fitXY"
+                android:src="@drawable/password_logo" />
+
+            <EditText
+                android:id="@+id/et_cpassword"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/e_text_bg"
+                android:hint="@string/sign_in_confirmpassword"
+                android:inputType="textPassword"
+                android:paddingHorizontal="10dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/botones"
+            android:text="@string/sign_in_next"
+            android:textAllCaps="false" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp">
-
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/round_icon"
-            android:src="@drawable/user_icon"
-            android:scaleType="fitXY"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/e_text_bg"
-            android:hint="@string/sign_in_lastname"
-            android:paddingHorizontal="10dp"
-            android:id="@+id/et_last_name"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp">
-
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/round_icon"
-            android:src="@drawable/email_icon"
-            android:scaleType="fitXY"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/e_text_bg"
-            android:hint="@string/sign_in_email"
-            android:paddingHorizontal="10dp"
-            android:id="@+id/et_email"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp">
-
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/round_icon"
-            android:src="@drawable/password_logo"
-            android:scaleType="fitXY"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/e_text_bg"
-            android:hint="@string/sign_in_password"
-            android:paddingHorizontal="10dp"
-            android:inputType="textPassword"
-            android:id="@+id/et_password"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp">
-
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/round_icon"
-            android:src="@drawable/password_logo"
-            android:scaleType="fitXY"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/e_text_bg"
-            android:hint="@string/sign_in_confirmpassword"
-            android:paddingHorizontal="10dp"
-            android:inputType="textPassword"
-            android:id="@+id/et_cpassword"/>
-
-    </LinearLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/botones"
-        android:text="@string/sign_in_next"
-        android:textAllCaps="false"
-        android:id="@+id/btn_next"/>
-
-</LinearLayout>
+</RelativeLayout>

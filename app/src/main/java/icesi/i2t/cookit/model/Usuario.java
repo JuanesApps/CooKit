@@ -1,16 +1,16 @@
 package icesi.i2t.cookit.model;
 
-public class Usruario {
+public class Usuario {
 
     private String name;
     private String last_name;
     private String email;
     private String user_id;
 
-    public Usruario() {
+    public Usuario() {
     }
 
-    public Usruario(String name, String last_name, String email, String user_id) {
+    public Usuario(String name, String last_name, String email, String user_id) {
         this.name = name;
         this.last_name = last_name;
         this.email = email;
