@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "498065389826-ienbulcc4ivo1if3d2htv65clmh358ki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "icesi.i2t.cookit",
+            "certificate_hash": "a6f48e349666aa7c8d418f730a37fa52b6b9d444"
+          }
+        },
+        {
           "client_id": "498065389826-if73rgrrsvv62rh4tlieh8d31ahrh8a0.apps.googleusercontent.com",
           "client_type": 3
         }
