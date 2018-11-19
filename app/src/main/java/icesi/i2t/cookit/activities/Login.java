@@ -1,4 +1,4 @@
-package icesi.i2t.cookit.view;
+package icesi.i2t.cookit.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
