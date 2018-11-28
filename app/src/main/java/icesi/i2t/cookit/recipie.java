@@ -8,6 +8,6 @@ public class recipie extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipie);
+//        setContentView(R.layout.activity_recipie);
     }
 }

@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.Splash"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:configChanges="orientation"
+            android:screenOrientation = "portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,10 +25,15 @@
         </activity>
         <activity
             android:name=".activities.SignUp"
-            android:label="Registro" />
+            android:label="Registro"
+            android:configChanges="orientation"
+            android:screenOrientation = "portrait" />
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/title_activity_main">
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:configChanges="orientation"
+            android:screenOrientation = "portrait">
 
         </activity>
         <activity android:name=".ItemWindow" />

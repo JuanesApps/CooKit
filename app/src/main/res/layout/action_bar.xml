@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#FF8F00"
-    tools:context="">
+    android:background="#FF8F00">
+    <!--tools:context=""-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,8 +1,7 @@
-package icesi.i2t.cookit.activities;
+package icesi.i2t.cookit.lists;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,21 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import java.util.List;
+import java.util.ArrayList;
 
 import icesi.i2t.cookit.R;
-import icesi.i2t.cookit.model.MyViewHolder;
 import icesi.i2t.cookit.model.Recipe;
-import icesi.i2t.cookit.model.Recipie;
 
 public class RecyclerAdapterFeed extends RecyclerView.Adapter<MyViewHolder> {
 
     private LayoutInflater inflater;
-    private List<Recipe> recipies;
+    private ArrayList<Recipe> recipies;
     private Context context;
     String[] a;
 
-    public RecyclerAdapterFeed(Context context, List<Recipe> recipies){
+
+    public RecyclerAdapterFeed(Context context, ArrayList<Recipe> recipies){
         inflater = LayoutInflater.from(context);
         this.context = context;
         this.recipies = recipies;
@@ -37,7 +35,7 @@ public class RecyclerAdapterFeed extends RecyclerView.Adapter<MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = inflater.inflate(R.layout.custom_table_row, viewGroup, false);
+        View view = inflater.inflate(R.layout.custom_table_row_recipe, viewGroup, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }

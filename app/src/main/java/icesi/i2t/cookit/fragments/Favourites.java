@@ -16,20 +16,20 @@ import icesi.i2t.cookit.R;
 import icesi.i2t.cookit.lists.RecyclerAdapterFeed;
 import icesi.i2t.cookit.model.Recipe;
 
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Feed.OnFragmentInteractionListener} interface
+ * {@link Favourites.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Feed#newInstance} factory method to
+ * Use the {@link Favourites#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Feed extends Fragment {
+public class Favourites extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     private RecyclerView list;
     private RecyclerAdapterFeed adapterFeed;
     private View vista;
@@ -40,7 +40,7 @@ public class Feed extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Feed() {
+    public Favourites() {
         // Required empty public constructor
     }
 
@@ -50,11 +50,11 @@ public class Feed extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Feed.
+     * @return A new instance of fragment Favourites.
      */
     // TODO: Rename and change types and number of parameters
-    public static Feed newInstance(String param1, String param2) {
-        Feed fragment = new Feed();
+    public static Favourites newInstance(String param1, String param2) {
+        Favourites fragment = new Favourites();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -74,22 +74,21 @@ public class Feed extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        vista = inflater.inflate(R.layout.fragment_feed, container, false);
+        vista = inflater.inflate(R.layout.fragment_favourites, container, false);
         ArrayList<Recipe> recipies = new ArrayList<>();
         Recipe r = new Recipe();
         r.setName("Pizza");
         r.setDescription("Comida italiana");
         Recipe r2 = new Recipe();
-        r2.setName("Hamburguesa");
-        r2.setDescription("Comida rapida");
+        r2.setName("Arroz");
+        r2.setDescription("Comida");
         Recipe r3 = new Recipe();
-        r3.setName("Bandeja Paisa");
+        r3.setName("Ramen");
         r3.setDescription("Comida tipica");
         recipies.add(r);
         recipies.add(r2);
         recipies.add(r3);
-        list = vista.findViewById(R.id.list_feed);
+        list = vista.findViewById(R.id.list_favs);
         adapterFeed = new RecyclerAdapterFeed(vista.getContext(), recipies);
         list.setHasFixedSize(true);
         list.setAdapter(adapterFeed);

@@ -1,8 +1,9 @@
-package icesi.i2t.cookit.model;
+package icesi.i2t.cookit.lists;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +16,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
     private TextView item_name;
     private TextView item_description;
     private LinearLayout item;
+    private ImageView img_fav;
+    private Boolean liked = false;
 
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -23,6 +26,18 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         item_name = itemView.findViewById(R.id.item_name);
         item_description = itemView.findViewById(R.id.item_description);
         item = itemView.findViewById(R.id.item);
+        img_fav = itemView.findViewById(R.id.img_fav);
+
+        img_fav.setOnClickListener(e -> {
+            if (!liked){
+                img_fav.setImageResource(R.drawable.icon_fav_filled);
+                liked = true;
+            }
+            else {
+                img_fav.setImageResource(R.drawable.icon_fav_empty);
+                liked = false;
+            }
+        });
 
     }
 
