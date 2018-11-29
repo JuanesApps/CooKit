@@ -3,6 +3,7 @@ package icesi.i2t.cookit.model;
 import android.provider.MediaStore;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Recipe {
 
@@ -13,8 +14,12 @@ public class Recipe {
     private String id;
     private String punctuation;
     private String steps;
+    private String u_id;
 
-
+    private HashSet<String> likedBy;
+    private HashSet<String> searchedby;
+    private HashSet<String> ingredient;
+    private HashSet<String> categories;
 
     private String name;
     private String description;
@@ -123,5 +128,45 @@ public class Recipe {
 
     public void setSteps(String steps) {
         this.steps = steps;
+    }
+
+    public String getU_id() {
+        return u_id;
+    }
+
+    public void setU_id(String u_id) {
+        this.u_id = u_id;
+    }
+
+    public HashSet<String> getLikedBy() {
+        return likedBy;
+    }
+
+    public void setLikedBy(HashSet<String> likedBy) {
+        this.likedBy = likedBy;
+    }
+
+    public HashSet<String> getSearchedby() {
+        return searchedby;
+    }
+
+    public void setSearchedby(HashSet<String> searchedby) {
+        this.searchedby = searchedby;
+    }
+
+    public HashSet<String> getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(HashSet<String> ingredient) {
+        this.ingredient = ingredient;
+    }
+
+    public HashSet<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(HashSet<String> categories) {
+        this.categories = categories;
     }
 }

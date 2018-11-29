@@ -22,8 +22,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 import icesi.i2t.cookit.R;
+import icesi.i2t.cookit.model.DataBase;
+import icesi.i2t.cookit.model.User;
 
 public class Login extends AppCompatActivity {
 
@@ -34,6 +40,9 @@ public class Login extends AppCompatActivity {
     private Button btn_login;
     private Button btn_sign_in;
     private SignInButton google_sign_in;
+    private FirebaseDatabase db;
+    private DataBase dataBase;
+    private HashMap<String, User> users;
 
     private FirebaseAuth auth;
 
@@ -44,7 +53,11 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        db = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
+        dataBase = DataBase.getInstance();
+
+        users = dataBase.getUserList();
 
         et_username = findViewById(R.id.et_usr);
         et_password = findViewById(R.id.et_pass);
@@ -124,7 +137,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d("Google Tag", "firebaseAuthWithGoogle:" + acct.getId());
+        Log.e("Google Tag", "firebaseAuthWithGoogle:" + acct.getId());
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         auth.signInWithCredential(credential)
@@ -134,7 +147,13 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Google Tag", "signInWithCredential:success");
+
                             FirebaseUser user = auth.getCurrentUser();
+                            if (!users.containsKey(user.getUid())){
+                                User usr = new User(user.getDisplayName(), "", user.getEmail(), user.getUid());
+                                DatabaseReference reference = db.getReference().child("usuarios").child(usr.getUser_id());
+                                reference.setValue(usr);
+                            }
                             Log.e("errrrrr", user.getDisplayName());
                             Intent i = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(i);

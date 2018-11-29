@@ -78,7 +78,6 @@ public class SignUp extends AppCompatActivity {
                                     Toast.makeText(SignUp.this,"Registro existoso",Toast.LENGTH_SHORT).show();
                                     usr.setUser_id(auth.getCurrentUser().getUid());
                                     DatabaseReference reference = db.getReference().child("usuarios").child(usr.getUser_id());
-                                    Log.e("aaaaaa", reference.toString());
                                     reference.setValue(usr);
 
                                     //AQUI ME VOY PARA LA OTRA ACTIVIDAD: PERFIL

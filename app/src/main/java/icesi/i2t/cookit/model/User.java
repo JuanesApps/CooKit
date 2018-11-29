@@ -1,6 +1,7 @@
 package icesi.i2t.cookit.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class User {
 
@@ -9,11 +10,22 @@ public class User {
     private String email;
     private String user_id;
 
+
+
+    private HashSet<String> created;
+    private HashSet<String> liked;
+    private HashSet<String> searchHistory;
+    private HashSet<String> orders;
+
     private ArrayList<UserRecipe> creations;
     private ArrayList<UserRecipe> likes;
     private ArrayList<UserRecipe> searches;
 
     public User() {
+        orders = new HashSet<>();
+        created = new HashSet<>();
+        searchHistory = new HashSet<>();
+        liked = new HashSet<>();
     }
 
     public User(String name, String last_name, String email, String user_id) {
@@ -21,6 +33,12 @@ public class User {
         this.last_name = last_name;
         this.email = email;
         this.user_id = user_id;
+
+        orders = new HashSet<>();
+        created = new HashSet<>();
+        searchHistory = new HashSet<>();
+        liked = new HashSet<>();
+
         creations = new ArrayList<>();
         likes = new ArrayList<>();
         searches = new ArrayList<>();
@@ -90,5 +108,38 @@ public class User {
 
     public void setSearches(ArrayList<UserRecipe> searches) {
         this.searches = searches;
+    }
+
+
+    public HashSet<String> getCreated() {
+        return created;
+    }
+
+    public void setCreated(HashSet<String> created) {
+        this.created = created;
+    }
+
+    public HashSet<String> getLiked() {
+        return liked;
+    }
+
+    public void setLiked(HashSet<String> liked) {
+        this.liked = liked;
+    }
+
+    public HashSet<String> getSearchHistory() {
+        return searchHistory;
+    }
+
+    public void setSearchHistory(HashSet<String> searchHistory) {
+        this.searchHistory = searchHistory;
+    }
+
+    public HashSet<String> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(HashSet<String> orders) {
+        this.orders = orders;
     }
 }
