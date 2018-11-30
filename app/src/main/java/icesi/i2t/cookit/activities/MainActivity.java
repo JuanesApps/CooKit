@@ -125,6 +125,12 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
         finish();
     }
 
+    public void goToProfile() {
+        Intent intent = new Intent(getApplicationContext(), Profile.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_profile:
+                        goToProfile();
                         return true;
                     case R.id.navigation_orders:
                         return true;
