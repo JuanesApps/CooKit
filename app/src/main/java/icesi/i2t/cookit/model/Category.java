@@ -1,15 +1,15 @@
 package icesi.i2t.cookit.model;
 
-import java.util.HashSet;
+import java.util.HashMap;
 
 public class Category {
 
     private String name;
     private String id;
-    private HashSet<String> recipies;
+    private HashMap<String, String> recipes;
 
     public Category() {
-        recipies = new HashSet<>();
+        recipes = new HashMap<>();
     }
 
     public String getName() {
@@ -28,11 +28,11 @@ public class Category {
         this.id = id;
     }
 
-    public HashSet<String> getRecipies() {
-        return recipies;
+    public HashMap<String, String> getRecipes() {
+        return recipes;
     }
 
-    public void setRecipies(HashSet<String> recipies) {
-        this.recipies = recipies;
+    public void setRecipes(HashMap<String, String> recipes) {
+        this.recipes = recipes;
     }
 }

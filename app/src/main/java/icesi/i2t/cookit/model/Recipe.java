@@ -3,23 +3,25 @@ package icesi.i2t.cookit.model;
 import android.provider.MediaStore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Recipe {
 
     private ArrayList<RecipeIngredient> ingredients;
+    private ArrayList<Ingredient> ingre;
     private UserRecipe creator;
     private ArrayList<UserRecipe> likes;
     private ArrayList<UserRecipe> searches;
     private String id;
     private String punctuation;
-    private String steps;
+    private ArrayList<String> steps;
     private String u_id;
 
-    private HashSet<String> likedBy;
-    private HashSet<String> searchedby;
-    private HashSet<String> ingredient;
-    private HashSet<String> categories;
+    private HashMap<String, Like> likedby;
+    private HashMap<String, String> searchedby;
+    private HashMap<String, String> ingredient;
+    private HashMap<String, String> categories;
 
     private String name;
     private String description;
@@ -27,6 +29,10 @@ public class Recipe {
 
 
     public Recipe() {
+        likedby = new HashMap<>();
+        searchedby = new HashMap<>();
+        ingredient = new HashMap<>();
+        categories = new HashMap<>();
     }
 
     public Recipe(ArrayList<RecipeIngredient> ingredients, UserRecipe creator, ArrayList<UserRecipe> likes, ArrayList<UserRecipe> searches, String name, String description, MediaStore.Video video) {
@@ -122,11 +128,11 @@ public class Recipe {
         this.punctuation = punctuation;
     }
 
-    public String getSteps() {
+    public ArrayList<String> getSteps() {
         return steps;
     }
 
-    public void setSteps(String steps) {
+    public void setSteps(ArrayList<String> steps) {
         this.steps = steps;
     }
 
@@ -138,35 +144,57 @@ public class Recipe {
         this.u_id = u_id;
     }
 
-    public HashSet<String> getLikedBy() {
-        return likedBy;
+    public HashMap<String, Like> getLikedby() {
+        return likedby;
     }
 
-    public void setLikedBy(HashSet<String> likedBy) {
-        this.likedBy = likedBy;
+    public void setLikedby(HashMap<String, Like> likedby) {
+        if (likedby==null){
+            likedby = new HashMap<>();
+        }
+        this.likedby = likedby;
     }
 
-    public HashSet<String> getSearchedby() {
+    public HashMap<String, String> getSearchedby() {
         return searchedby;
     }
 
-    public void setSearchedby(HashSet<String> searchedby) {
+    public void setSearchedby(HashMap<String, String> searchedby) {
         this.searchedby = searchedby;
     }
 
-    public HashSet<String> getIngredient() {
+    public HashMap<String, String> getIngredient() {
         return ingredient;
     }
 
-    public void setIngredient(HashSet<String> ingredient) {
+    public void setIngredient(HashMap<String, String> ingredient) {
         this.ingredient = ingredient;
     }
 
-    public HashSet<String> getCategories() {
+    public HashMap<String, String> getCategories() {
         return categories;
     }
 
-    public void setCategories(HashSet<String> categories) {
+    public void setCategories(HashMap<String, String> categories) {
         this.categories = categories;
     }
+
+    public ArrayList<Ingredient> getIngre() {
+        return ingre;
+    }
+
+    public void setIngre(ArrayList<Ingredient> ingre) {
+        this.ingre = ingre;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Recipe){
+            Recipe c = (Recipe) obj;
+            return getId().equals(c.getId());
+        }
+        return false;
+    }
+
 }

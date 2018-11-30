@@ -12,6 +12,7 @@ public class Orders {
 
     public String id;
     public String nombreReceta;
+    public String direccion;
     public HashSet<String> ingedientes;
 
     public Orders() {
@@ -40,5 +41,13 @@ public class Orders {
 
     public void setIngedientes(HashSet<String> ingedientes) {
         this.ingedientes = ingedientes;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 }

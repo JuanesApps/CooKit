@@ -1,12 +1,14 @@
 package icesi.i2t.cookit.model;
 
-import java.util.HashSet;
+import android.support.annotation.NonNull;
 
-public class Ingredient {
+import java.util.HashMap;
+
+public class Ingredient implements Comparable<Ingredient>{
 
     private String name;
     private String id;
-    private HashSet<String> recipies;
+    private HashMap<String, String> recipes;
     private String description;
 
 
@@ -16,7 +18,7 @@ public class Ingredient {
     }
 
     public Ingredient() {
-        recipies = new HashSet<>();
+        recipes = new HashMap<>();
     }
 
     public String getName() {
@@ -43,11 +45,16 @@ public class Ingredient {
         this.id = id;
     }
 
-    public HashSet<String> getRecipies() {
-        return recipies;
+    public HashMap<String, String> getRecipes() {
+        return recipes;
     }
 
-    public void setRecipies(HashSet<String> recipies) {
-        this.recipies = recipies;
+    public void setRecipes(HashMap<String, String> recipes) {
+        this.recipes = recipes;
+    }
+
+    @Override
+    public int compareTo(@NonNull Ingredient o) {
+        return name.compareTo(o.name);
     }
 }

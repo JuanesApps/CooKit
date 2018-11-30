@@ -1,6 +1,7 @@
 package icesi.i2t.cookit.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class User {
@@ -12,20 +13,20 @@ public class User {
 
 
 
-    private HashSet<String> created;
-    private HashSet<String> liked;
-    private HashSet<String> searchHistory;
-    private HashSet<String> orders;
+    private HashMap<String, String> created;
+    private HashMap<String, Like> liked;
+    private HashMap<String, String> searchHistory;
+    private HashMap<String, String> orders;
 
     private ArrayList<UserRecipe> creations;
     private ArrayList<UserRecipe> likes;
     private ArrayList<UserRecipe> searches;
 
     public User() {
-        orders = new HashSet<>();
-        created = new HashSet<>();
-        searchHistory = new HashSet<>();
-        liked = new HashSet<>();
+        orders = new HashMap<>();
+        created = new HashMap<>();
+        searchHistory = new HashMap<>();
+        liked = new HashMap<>();
     }
 
     public User(String name, String last_name, String email, String user_id) {
@@ -33,11 +34,6 @@ public class User {
         this.last_name = last_name;
         this.email = email;
         this.user_id = user_id;
-
-        orders = new HashSet<>();
-        created = new HashSet<>();
-        searchHistory = new HashSet<>();
-        liked = new HashSet<>();
 
         creations = new ArrayList<>();
         likes = new ArrayList<>();
@@ -111,35 +107,35 @@ public class User {
     }
 
 
-    public HashSet<String> getCreated() {
+    public HashMap<String, String> getCreated() {
         return created;
     }
 
-    public void setCreated(HashSet<String> created) {
+    public void setCreated(HashMap<String, String> created) {
         this.created = created;
     }
 
-    public HashSet<String> getLiked() {
+    public HashMap<String, Like> getLiked() {
         return liked;
     }
 
-    public void setLiked(HashSet<String> liked) {
+    public void setLiked(HashMap<String, Like> liked) {
         this.liked = liked;
     }
 
-    public HashSet<String> getSearchHistory() {
+    public HashMap<String, String> getSearchHistory() {
         return searchHistory;
     }
 
-    public void setSearchHistory(HashSet<String> searchHistory) {
+    public void setSearchHistory(HashMap<String, String> searchHistory) {
         this.searchHistory = searchHistory;
     }
 
-    public HashSet<String> getOrders() {
+    public HashMap<String, String> getOrders() {
         return orders;
     }
 
-    public void setOrders(HashSet<String> orders) {
+    public void setOrders(HashMap<String, String> orders) {
         this.orders = orders;
     }
 }

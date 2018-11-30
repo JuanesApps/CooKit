@@ -3,18 +3,29 @@ package icesi.i2t.cookit.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import icesi.i2t.cookit.R;
 import icesi.i2t.cookit.lists.RecyclerAdapterFeed;
+import icesi.i2t.cookit.model.DataBase;
 import icesi.i2t.cookit.model.Recipe;
+import icesi.i2t.cookit.model.modelLogic;
 
 
 /**
@@ -33,6 +44,8 @@ public class Feed extends Fragment {
     private RecyclerView list;
     private RecyclerAdapterFeed adapterFeed;
     private View vista;
+    private FirebaseDatabase db;
+    private ArrayList<Recipe> recipes;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -74,26 +87,24 @@ public class Feed extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        db = FirebaseDatabase.getInstance();
         vista = inflater.inflate(R.layout.fragment_feed, container, false);
-        ArrayList<Recipe> recipies = new ArrayList<>();
-        Recipe r = new Recipe();
-        r.setName("Pizza");
-        r.setDescription("Comida italiana");
-        Recipe r2 = new Recipe();
-        r2.setName("Hamburguesa");
-        r2.setDescription("Comida rapida");
-        Recipe r3 = new Recipe();
-        r3.setName("Bandeja Paisa");
-        r3.setDescription("Comida tipica");
-        recipies.add(r);
-        recipies.add(r2);
-        recipies.add(r3);
         list = vista.findViewById(R.id.list_feed);
-        adapterFeed = new RecyclerAdapterFeed(vista.getContext(), recipies);
-        list.setHasFixedSize(true);
-        list.setAdapter(adapterFeed);
-        list.setLayoutManager(new LinearLayoutManager(vista.getContext()));
+        recipes = new ArrayList<>();
+//        Recipe r = new Recipe();
+//        r.setName("Pizza");
+//        r.setDescription("Comida italiana");
+//        Recipe r2 = new Recipe();
+//        r2.setName("Hamburguesa");
+//        r2.setDescription("Comida rapida");
+//        Recipe r3 = new Recipe();
+//        r3.setName("Bandeja Paisa");
+//        r3.setDescription("Comida tipica");
+//        recipies.add(r);
+//        recipies.add(r2);
+//        recipies.add(r3);
+
+        getRecipeList();
         return vista;
     }
 
@@ -135,4 +146,30 @@ public class Feed extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public void getRecipeList(){
+        DatabaseReference recipies_ref = db.getReference().child("recipes");
+        recipes = new ArrayList<>();
+        recipies_ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> ds = dataSnapshot.getChildren();
+                for (DataSnapshot data : ds){
+                    Recipe rec = data.getValue(Recipe.class);
+                    recipes.add(rec);
+                }
+                adapterFeed = new RecyclerAdapterFeed(vista.getContext(), recipes);
+                list.setHasFixedSize(true);
+                list.setAdapter(adapterFeed);
+                list.setLayoutManager(new LinearLayoutManager(vista.getContext()));
+                Log.e("-----------len", "Cargo lista todo");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }
