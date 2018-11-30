@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="icesi.i2t.cookit">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon_round"
@@ -9,10 +16,11 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Splash"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        <activity
+            android:name=".activities.Splash"
             android:configChanges="orientation"
-            android:screenOrientation = "portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,27 +29,35 @@
         </activity>
         <activity
             android:name=".activities.Login"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.SignUp"
-            android:label="Registro"
             android:configChanges="orientation"
-            android:screenOrientation = "portrait" />
+            android:label="Registro"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:configChanges="orientation"
-            android:screenOrientation = "portrait"/>
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.Profile"
-            android:label="Profile"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:configChanges="orientation"
-            android:screenOrientation = "portrait">
-        </activity>
+            android:label="Profile"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".ItemWindow" />
+        <activity android:name=".activities.AddRecipe" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+
     </application>
 
 </manifest>

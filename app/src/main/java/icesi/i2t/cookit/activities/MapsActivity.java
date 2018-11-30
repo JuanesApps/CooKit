@@ -64,7 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in Cali and move the camera
         LatLng cali = new LatLng(3.420556, -76.522224);
         mMap.addMarker(new MarkerOptions().position(cali).title("Marker in Cali,CO").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(cali));
