@@ -1,7 +1,11 @@
 package icesi.i2t.cookit.activities;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -18,12 +22,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import icesi.i2t.cookit.R;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class Maps extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private int status;
 
-    //More info>  https://www.youtube.com/watch?v=nybRpw2H7gg
+    //More info> https://www.youtube.com/watch?v=nybRpw2H7gg
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +45,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         } else {
             Dialog dialog = GooglePlayServicesUtil.getErrorDialog(status, (Activity) getApplicationContext(), 10);
+            dialog.show();
         }
-
     }
 
 
@@ -54,14 +59,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+    @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
+        //Para obtener mi ubicacion
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
+
         //Habilitar utilidades de Google Map
         UiSettings uiSettings = mMap.getUiSettings();
+        uiSettings.setMyLocationButtonEnabled(true);
         uiSettings.setZoomControlsEnabled(true);
 
         // Add a marker in Cali and move the camera
