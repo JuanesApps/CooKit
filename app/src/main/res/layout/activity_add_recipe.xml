@@ -1,132 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="40dp"
-    android:paddingRight="40dp">
+    android:orientation="vertical">
 
-    <!--Recipe name-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
 
+        <!--Recipe name-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recipe name"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="5dp"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/text_view"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:id="@+id/txt_nom"
+                android:inputType="textCapSentences"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#000"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/divider_horizontal_bright" />
+
+        <!--Ingredients-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredients:"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/et_agregaring"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:hint="Write the ingredient" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right">
+                        <Button
+                            android:id="@+id/agregarIngrediente"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:text="+"
+                            android:textAllCaps="false" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/lista_ing"
+                    android:minHeight="400dp">
+
+                </ListView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#000"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/divider_horizontal_bright" />
+
+        <!--Steps-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Steps"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Write the step"
+                        android:id="@+id/et_agregarPaso"
+                        android:inputType="textCapSentences"/>
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:textAllCaps="false"
+                        android:id="@+id/agregarPaso"/>
+
+                </LinearLayout>
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/lista_pasos">
+
+                </ListView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#000"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/divider_horizontal_bright" />
+
+        <!--Categories-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Categories"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <AutoCompleteTextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Write the category"
+                        android:id="@+id/et_agregarcat"
+                        android:inputType="textCapSentences"/>
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:textAllCaps="false"
+                        android:id="@+id/agregarCategoria"/>
+
+                </LinearLayout>
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:id="@+id/lista_cat">
+
+                </ListView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#000"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/divider_horizontal_bright" />
+
+        <!--Media-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Add Media"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_agregarfoto"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:text="+" />
+
+                <ImageView
+                    android:id="@+id/img_foto"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#000"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/divider_horizontal_bright" />
+
+        <!--Video-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recipe name"
+            android:layout_marginTop="10dp"
+            android:text="Add Video Link "
             android:textColor="#000"
             android:textSize="18sp" />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_height="45dp"
             android:background="@drawable/text_view"
+            android:padding="10dp"
             android:textColor="#000"
             android:textSize="18sp" />
 
-    </LinearLayout>
-
-    <!--Ingredients-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
+        <!--Submit-->
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ingredients"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/botones"
+            android:text="Sumit"
             android:textColor="#000"
-            android:textSize="18sp" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp" />
+            android:textSize="18sp"
+            android:id="@+id/btn_submit"/>
 
     </LinearLayout>
-
-    <!--Steps-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Steps"
-            android:textColor="#000"
-            android:textSize="18sp" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp" />
-
-    </LinearLayout>
-
-    <!--Categories-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Categories"
-            android:textColor="#000"
-            android:textSize="18sp" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp" />
-
-    </LinearLayout>
-
-    <!--Media-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Add Media"
-        android:textColor="#000"
-        android:textSize="18sp" />
-
-    <!--Video-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Add Video Link "
-        android:textColor="#000"
-        android:textSize="18sp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/text_view"
-        android:textColor="#000"
-        android:textSize="18sp" />
-
-    <!--Submit-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/botones"
-        android:text="Sumit"
-        android:textColor="#000"
-        android:textSize="18sp" />
-
-</LinearLayout>
+</ScrollView>

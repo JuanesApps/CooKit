@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
                     steps.add(line);
                     line = in.readLine();
                 }
-                logic.addRecipie(steps,ingredients,categoria,"",nombre);
+                logic.addRecipie(steps,ingredients,categoria,nombre);
                 line = in.readLine();
                 logic.refresh();
             }
@@ -104,12 +104,12 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
                     }
                     favs = new Favourites();
                     setFragment(favs);
-                    Log.e("ke pasa", "prro");
                     return true;
                 case R.id.navigation_new:
                     if (!toolbarMode){
                         setDefaultToolbar();
                     }
+                    goToNew();
 //                    toolbar.removeAllViews();
 //                    addAllrec(logic);
 //                    logic.wipeIngsAndCats();
@@ -128,7 +128,11 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
     public void goToProfile() {
         Intent intent = new Intent(getApplicationContext(), Profile.class);
         startActivity(intent);
-        finish();
+    }
+
+    public void goToNew() {
+        Intent intent = new Intent(getApplicationContext(), AddRecipe.class);
+        startActivity(intent);
     }
 
     @Override

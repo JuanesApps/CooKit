@@ -2,6 +2,8 @@ package icesi.i2t.cookit.lists;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -11,16 +13,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import icesi.i2t.cookit.R;
+import icesi.i2t.cookit.activities.RecipeName;
 import icesi.i2t.cookit.model.Like;
 import icesi.i2t.cookit.model.Recipe;
 
@@ -31,6 +38,7 @@ public class RecyclerAdapterFeed extends RecyclerView.Adapter<MyViewHolder> {
     private FirebaseAuth auth;
     private FirebaseDatabase db;
     private Context context;
+    private FirebaseStorage storage;
     String[] a;
 
 
@@ -40,6 +48,7 @@ public class RecyclerAdapterFeed extends RecyclerView.Adapter<MyViewHolder> {
         this.recipies = recipies;
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         db.getReference().child("recipes").addChildEventListener(new ChildEventListener() {
             @Override
@@ -117,7 +126,20 @@ public class RecyclerAdapterFeed extends RecyclerView.Adapter<MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int i) {
         Recipe current = recipies.get(i);
         String c = a[i];
-//        Picasso.get().load(current.getMediumImageUrl()).into(viewHolder.getImage_item());
+        StorageReference ref = storage.getReference().child("recipes").child(current.getId());
+        try {
+            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(viewHolder.getImage_item());
+                notifyDataSetChanged();
+                }
+            });
+        } catch (Exception e){
+
+        }
+
+
         viewHolder.getItem_name().setText(current.getName());
         viewHolder.getItem_description().setText(current.getDescription());
         viewHolder.setRecipe(current);
@@ -130,11 +152,11 @@ public class RecyclerAdapterFeed extends RecyclerView.Adapter<MyViewHolder> {
 
 
 
-//        viewHolder.getItem().setOnClickListener(action -> {
-//            Intent intent = new Intent(context, PlayListView.class);
-//            intent.putExtra("listId", current.getId());
-//            context.startActivity(intent);
-//        });
+        viewHolder.getItem().setOnClickListener(action -> {
+            Intent intent = new Intent(context, RecipeName.class);
+            intent.putExtra("recipeId", current.getId());
+            context.startActivity(intent);
+        });
 
     }
 

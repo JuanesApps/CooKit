@@ -97,13 +97,13 @@ public class Favourites extends Fragment {
         recipes = new ArrayList<>();
 //        Recipe r = new Recipe();
 //        r.setName("Pizza");
-//        r.setDescription("Comida italiana");
+//        r.setCost("Comida italiana");
 //        Recipe r2 = new Recipe();
 //        r2.setName("Arroz");
-//        r2.setDescription("Comida");
+//        r2.setCost("Comida");
 //        Recipe r3 = new Recipe();
 //        r3.setName("Ramen");
-//        r3.setDescription("Comida tipica");
+//        r3.setCost("Comida tipica");
 //        recipies.add(r);
 //        recipies.add(r2);
 //        recipies.add(r3);

@@ -9,12 +9,12 @@ public class Ingredient implements Comparable<Ingredient>{
     private String name;
     private String id;
     private HashMap<String, String> recipes;
-    private String description;
+    private String cost;
 
 
-    public Ingredient(String name, String description) {
+    public Ingredient(String name, String cost) {
         this.name = name;
-        this.description = description;
+        this.cost = cost;
     }
 
     public Ingredient() {
@@ -29,12 +29,12 @@ public class Ingredient implements Comparable<Ingredient>{
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCost() {
+        return cost;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCost(String cost) {
+        this.cost = cost;
     }
 
     public String getId() {

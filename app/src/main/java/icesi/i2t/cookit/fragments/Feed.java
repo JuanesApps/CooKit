@@ -93,13 +93,13 @@ public class Feed extends Fragment {
         recipes = new ArrayList<>();
 //        Recipe r = new Recipe();
 //        r.setName("Pizza");
-//        r.setDescription("Comida italiana");
+//        r.setCost("Comida italiana");
 //        Recipe r2 = new Recipe();
 //        r2.setName("Hamburguesa");
-//        r2.setDescription("Comida rapida");
+//        r2.setCost("Comida rapida");
 //        Recipe r3 = new Recipe();
 //        r3.setName("Bandeja Paisa");
-//        r3.setDescription("Comida tipica");
+//        r3.setCost("Comida tipica");
 //        recipies.add(r);
 //        recipies.add(r2);
 //        recipies.add(r3);

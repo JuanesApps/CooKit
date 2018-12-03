@@ -13,7 +13,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 
 import icesi.i2t.cookit.activities.MainActivity;
-import icesi.i2t.cookit.activities.MapsActivity;
 
 public class DataBase {
 

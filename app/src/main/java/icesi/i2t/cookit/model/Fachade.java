@@ -1,7 +1,5 @@
 package icesi.i2t.cookit.model;
 
-import android.provider.MediaStore;
-
 import java.util.ArrayList;
 
 public class Fachade {
@@ -25,7 +23,7 @@ public class Fachade {
     public boolean createIngredient(String name, String description) {
         Ingredient ingredient = new Ingredient(name, description);
         for (Ingredient ingredientTemp : ingredients) {
-            if (ingredientTemp.getDescription().equals(ingredient.getDescription()))
+            if (ingredientTemp.getCost().equals(ingredient.getCost()))
                 return false;
         }
         ingredients.add(ingredient);

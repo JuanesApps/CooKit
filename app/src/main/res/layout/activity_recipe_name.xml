@@ -19,7 +19,14 @@
             android:paddingRight="40dp"
             android:text="Recipe name"
             android:textColor="#000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:id="@+id/recipe_name"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/splash_icon"
+            android:id="@+id/foto"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -33,23 +40,21 @@
             android:src="@android:drawable/divider_horizontal_bright" />
 
         <!--Recipe name-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="40dp"
-            android:paddingTop="10dp"
-            android:paddingRight="40dp"
-            android:text="Recipe name"
-            android:textColor="#000"
-            android:textSize="18sp" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="40dp"
-            android:paddingRight="40dp">
-
+            android:paddingRight="40dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/icon_fav_empty"
+                android:id="@+id/btn_like"/>
             <CheckBox
                 android:id="@+id/recipe_name_star1"
                 style="?android:attr/starStyle"
@@ -88,7 +93,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="20dp"
                 android:text="5/5"
                 android:textColor="#000"
                 android:textSize="18sp" />
@@ -120,16 +125,22 @@
                 android:text="Ingredients"
                 android:textColor="#000"
                 android:textSize="18sp" />
-
-            <Button
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:background="@drawable/botones"
-                android:text="Buy"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="18sp" />
+                android:gravity="right">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/botones"
+                    android:text="Buy"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:id="@+id/btn_buy"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -141,43 +152,8 @@
             android:paddingRight="40dp"
             android:text="Ingredient number one"
             android:textColor="#000"
-            android:textSize="18sp" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:background="#000"
-            android:scaleType="fitXY"
-            android:src="@android:drawable/divider_horizontal_bright" />
-
-        <!--Recommend utensils-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Recommend utensils"
-                android:textColor="#000"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="First utensil"
-                android:textColor="#000"
-                android:textSize="18sp" />
-
-
-        </LinearLayout>
+            android:textSize="18sp"
+            android:id="@+id/txt_ingredients"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -201,16 +177,18 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Steps"
+                android:text="Steps:"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_marginBottom="10dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="First step"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:id="@+id/txt_steps"/>
 
 
         </LinearLayout>

@@ -8,6 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class modelLogic {
 
@@ -82,12 +83,8 @@ public class modelLogic {
         Log.e("-----------cat", categories.size()+"");
     }
 
-    public void addRecipie(ArrayList<String> pasos, ArrayList<String> ingredients, ArrayList<String> categories, String image_path, String nombre){
+    public String addRecipie(ArrayList<String> pasos, ArrayList<String> ingredients, ArrayList<String> categories, String nombre){
 
-
-        User user = usuarios.get(auth.getCurrentUser().getUid());
-
-        Log.e("-----------a", usuarios.size()+"");
         DatabaseReference recipie_ref = db.getReference().child("recipes").push();
         Recipe rec = new Recipe();
         rec.setId(recipie_ref.getKey());
@@ -102,7 +99,8 @@ public class modelLogic {
 //        for (String ing: ingIds) {
 //            db.getReference().child("recipes").child(rec.getId()).child("ingrediente").push().setValue(ing);
 //        }
-        db.getReference().child("usuarios").child(auth.getCurrentUser().getUid()).child("created").push().setValue(rec.getId());
+        db.getReference().child("usuarios").child(auth.getCurrentUser().getUid()).child("created").child(rec.getId()).setValue(rec.getId());
+        return rec.getId();
     }
 
     private HashMap<String, String> addIngredients(ArrayList<String> ingredients, String recipieId){
@@ -203,6 +201,16 @@ public class modelLogic {
         }
 
         return recipes;
+    }
+
+    public void addPrices() {
+        DatabaseReference ing_ref = db.getReference().child("ingredients");
+        for (Ingredient ing: ingredientHashMap.values()) {
+            Random rand = new Random();
+            int num = rand.nextInt(50)+1;
+            String cost = "$" + num + ".000";
+            ing_ref.child(ing.getId()).child("cost").setValue(cost);
+        }
     }
 
     public void wipeIngsAndCats(){
