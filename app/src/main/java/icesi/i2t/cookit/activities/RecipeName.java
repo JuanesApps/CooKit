@@ -1,10 +1,12 @@
 package icesi.i2t.cookit.activities;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +41,7 @@ public class RecipeName extends AppCompatActivity {
     private FirebaseDatabase db;
     private FirebaseAuth auth;
     private FirebaseStorage storage;
+    private Button buy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,7 @@ public class RecipeName extends AppCompatActivity {
         ingredients = findViewById(R.id.txt_ingredients);
         steps = findViewById(R.id.txt_steps);
         like = findViewById(R.id.btn_like);
+        buy = findViewById(R.id.btn_buy);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
@@ -87,6 +91,12 @@ public class RecipeName extends AppCompatActivity {
                 recipe.getLikedby().put(like.getId_lkusr(), like);
                 like(true);
             }
+        });
+
+        buy.setOnClickListener(e -> {
+            Intent intent = new Intent(getApplicationContext(), buy1.class);
+            intent.putExtra("recipeId", recipe.getId());
+            startActivity(intent);
         });
 
     }
@@ -141,7 +151,7 @@ public class RecipeName extends AppCompatActivity {
         obtenerIngredientes();
         like(recipe.getLikedby().containsValue(new Like(auth.getCurrentUser().getUid())));
 
-        StorageReference ref = storage.getReference().child("recipes").child(recipe.getId());
+        StorageReference ref = storage.getReference().child("recipes").child(recipe.getId()+".jpg");
         Log.e("***************", ref.getPath());
         try {
             ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

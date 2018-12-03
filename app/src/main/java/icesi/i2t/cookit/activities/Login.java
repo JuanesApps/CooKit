@@ -114,7 +114,7 @@ public class Login extends AppCompatActivity {
 
     private void google_sign_in() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
+            startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
     }
 
     @Override

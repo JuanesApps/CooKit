@@ -2,7 +2,7 @@ package icesi.i2t.cookit.model;
 
 import java.util.HashSet;
 
-public class Orders {
+public class Order {
 
     public static final String PENDIENTE = "Orden pendiente";
     public static final String ACEPTADA = "Orden aceptada";
@@ -13,10 +13,14 @@ public class Orders {
     public String id;
     public String nombreReceta;
     public String direccion;
-    public HashSet<String> ingedientes;
+    public String idReceta;
+    public String idUsuario;
+    public String idCopmrador;
+    private String estado;
+    public int cost;
 
-    public Orders() {
-        ingedientes = new HashSet<>();
+    public Order() {
+
     }
 
     public String getId() {
@@ -35,12 +39,28 @@ public class Orders {
         this.nombreReceta = nombreReceta;
     }
 
-    public HashSet<String> getIngedientes() {
-        return ingedientes;
+    public String getIdReceta() {
+        return idReceta;
     }
 
-    public void setIngedientes(HashSet<String> ingedientes) {
-        this.ingedientes = ingedientes;
+    public void setIdReceta(String idReceta) {
+        this.idReceta = idReceta;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getIdCopmrador() {
+        return idCopmrador;
+    }
+
+    public void setIdCopmrador(String idCopmrador) {
+        this.idCopmrador = idCopmrador;
     }
 
     public String getDireccion() {
@@ -49,5 +69,21 @@ public class Orders {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 }

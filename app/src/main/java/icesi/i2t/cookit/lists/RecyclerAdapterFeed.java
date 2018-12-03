@@ -126,13 +126,12 @@ public class RecyclerAdapterFeed extends RecyclerView.Adapter<MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int i) {
         Recipe current = recipies.get(i);
         String c = a[i];
-        StorageReference ref = storage.getReference().child("recipes").child(current.getId());
+        StorageReference ref = storage.getReference().child("recipes").child(current.getId()+".jpg");
         try {
             ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).into(viewHolder.getImage_item());
-                notifyDataSetChanged();
                 }
             });
         } catch (Exception e){

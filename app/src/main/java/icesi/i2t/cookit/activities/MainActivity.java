@@ -27,6 +27,7 @@ import icesi.i2t.cookit.fragments.Fragcategory;
 import icesi.i2t.cookit.fragments.Favourites;
 import icesi.i2t.cookit.fragments.Feed;
 import icesi.i2t.cookit.model.DataBase;
+import icesi.i2t.cookit.model.Order;
 import icesi.i2t.cookit.model.modelLogic;
 
 public class MainActivity extends AppCompatActivity implements Feed.OnFragmentInteractionListener, Favourites.OnFragmentInteractionListener,
@@ -135,6 +136,11 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
         startActivity(intent);
     }
 
+    public void goToOrders() {
+        Intent intent = new Intent(getApplicationContext(), activity_orders.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -181,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
                         goToProfile();
                         return true;
                     case R.id.navigation_orders:
+                        goToOrders();
                         return true;
                     case R.id.navigation_logout:
                         FirebaseAuth.getInstance().signOut();

@@ -18,7 +18,8 @@
     <!--Para el spinner se necesita ir a Res>Values>Strings y escribir los items-->
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/spiner">
 
     </Spinner>
 
@@ -28,14 +29,17 @@
         android:layout_height="wrap_content"
         android:text="Subtotal:"
         android:textColor="#000"
-        android:textSize="18sp" />
+        android:textSize="18sp"/>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:background="@drawable/text_view"
         android:textColor="#000"
-        android:textSize="18sp" />
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:id="@+id/subtotal"
+        android:gravity="right"/>
 
     <!--Address-->
     <TextView
@@ -50,19 +54,22 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <EditText
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:background="@drawable/text_view"
             android:textColor="#000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:id="@+id/address"
+            android:inputType="textCapSentences"/>
         <!--Imagen de Google Maps-->
         <ImageButton
             android:id="@+id/ibtn_maps"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"/>
 
     </LinearLayout>
 
@@ -76,7 +83,8 @@
 
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/spiner_pay">
 
     </Spinner>
 
@@ -90,9 +98,23 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:background="@drawable/text_view"
         android:textColor="#000"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:id="@+id/total_cost"
+        android:padding="10dp"
+        android:gravity="right"/>
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:text="Buy"
+        android:layout_height="45dp"
+        android:background="@drawable/botones"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:id="@+id/buy"/>
 
 </LinearLayout>

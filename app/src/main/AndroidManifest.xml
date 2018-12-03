@@ -15,7 +15,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon_round"
@@ -70,8 +69,25 @@
         <activity
             android:name=".activities.Maps"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".activities.AddRecipe" />
-        <activity android:name=".activities.RecipeName"></activity>
+        <activity
+            android:name=".activities.AddRecipe"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.RecipeName"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.buy1"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.buy2"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.activity_orders"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" ></activity>
     </application>
 
 </manifest>
