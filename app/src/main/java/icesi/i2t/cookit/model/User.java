@@ -10,6 +10,7 @@ public class User {
     private String last_name;
     private String email;
     private String user_id;
+    private String user_type;
 
 
 
@@ -137,5 +138,13 @@ public class User {
 
     public void setOrders(HashMap<String, String> orders) {
         this.orders = orders;
+    }
+
+    public String getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(String user_type) {
+        this.user_type = user_type;
     }
 }

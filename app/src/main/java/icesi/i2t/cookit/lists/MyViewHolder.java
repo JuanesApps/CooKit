@@ -28,7 +28,6 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView image_item;
     private TextView item_name;
-    private TextView item_description;
     private LinearLayout item;
     private ImageView img_fav;
     private FirebaseAuth auth;
@@ -40,7 +39,6 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
 
         image_item = itemView.findViewById(R.id.item_image);
         item_name = itemView.findViewById(R.id.item_name);
-        item_description = itemView.findViewById(R.id.item_description);
         item = itemView.findViewById(R.id.item);
         img_fav = itemView.findViewById(R.id.img_fav);
         auth = FirebaseAuth.getInstance();
@@ -103,14 +101,6 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
 
     public void setItem_name(TextView item_name) {
         this.item_name = item_name;
-    }
-
-    public TextView getItem_description() {
-        return item_description;
-    }
-
-    public void setItem_description(TextView item_description) {
-        this.item_description = item_description;
     }
 
     public LinearLayout getItem() { return item; }

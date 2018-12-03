@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,23 +16,31 @@ import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 import icesi.i2t.cookit.R;
 import icesi.i2t.cookit.fragments.Fragcategory;
 import icesi.i2t.cookit.fragments.Favourites;
 import icesi.i2t.cookit.fragments.Feed;
+import icesi.i2t.cookit.fragments.SearchFragment;
 import icesi.i2t.cookit.model.DataBase;
-import icesi.i2t.cookit.model.Order;
+import icesi.i2t.cookit.model.User;
 import icesi.i2t.cookit.model.modelLogic;
 
 public class MainActivity extends AppCompatActivity implements Feed.OnFragmentInteractionListener, Favourites.OnFragmentInteractionListener,
-        Fragcategory.OnFragmentInteractionListener {
+        Fragcategory.OnFragmentInteractionListener, SearchFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
     private Toolbar toolbar;
@@ -42,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
     private boolean toolbarMode;
     private modelLogic logic;
     private DataBase dataBase;
+    private FirebaseDatabase db;
+    private User user;
+    private MainActivity main;
 
     public void addAllrec(modelLogic logic) {
         try {
@@ -79,6 +91,31 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
         }
     }
 
+    private void findUser(){
+        DatabaseReference usuarios_ref = db.getReference().child("usuarios");
+        usuarios_ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> ds = dataSnapshot.getChildren();
+                for (DataSnapshot data : ds){
+                    User usr = data.getValue(User.class);
+                    if (usr.getUser_id().equals(auth.getCurrentUser().getUid())){
+                        user = usr;
+                    }
+                }
+                if (user.getUser_type()!=null){
+                    goToOrders(user.getUser_type());
+                    finish();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -97,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
                         setSearchToolbar();
                     }
                     fragcategory = new Fragcategory();
+                    fragcategory.setMain(main);
                     setFragment(fragcategory);
                     return true;
                 case R.id.navigation_favourite:
@@ -136,8 +174,9 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
         startActivity(intent);
     }
 
-    public void goToOrders() {
-        Intent intent = new Intent(getApplicationContext(), activity_orders.class);
+    public void goToOrders(String userType) {
+        Intent intent = new Intent(getApplicationContext(), vista_orden.class);
+        intent.putExtra("userType", userType);
         startActivity(intent);
     }
 
@@ -147,10 +186,12 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
         dataBase = DataBase.getInstance();
+        db = FirebaseDatabase.getInstance();
         if (auth.getCurrentUser() == null) {
             goToLogin();
+        } else {
+            findUser();
         }
-
         logic = new modelLogic();
         dataBase = new DataBase(logic);
         logic.refresh();
@@ -172,7 +213,8 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
 //        Log.e("-----------=", c.size()+"c");
 //        HashMap<String, User> d = dataBase.getUserList();
 //        Log.e("-----------=", d.size()+"d");
-
+        escucharNotificaciones();
+        main = this;
     }
 
     public void setDefaultToolbar(){
@@ -187,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
                         goToProfile();
                         return true;
                     case R.id.navigation_orders:
-                        goToOrders();
+                        goToOrders("normal");
                         return true;
                     case R.id.navigation_logout:
                         FirebaseAuth.getInstance().signOut();
@@ -227,8 +269,49 @@ public class MainActivity extends AppCompatActivity implements Feed.OnFragmentIn
         fragmentTransaction.commit();
     }
 
+    public void escucharNotificaciones(){
+
+        db.getReference().child("orders").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                HashMap<String, Object> r = (HashMap) dataSnapshot.getValue();
+                if (user.getOrders().containsValue(r.get("id"))){
+                    Log.e("5218162917917181", "Notifica3");
+                    hacerNotificacion();
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    public void hacerNotificacion(){
+        Intent intent = new Intent(this, NotificationService.class);
+        startService(intent);
+    }
+
 }

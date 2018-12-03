@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import icesi.i2t.cookit.R;
+import icesi.i2t.cookit.activities.MyOrder;
 import icesi.i2t.cookit.activities.RecipeName;
 import icesi.i2t.cookit.model.Like;
 import icesi.i2t.cookit.model.Order;
@@ -38,13 +39,15 @@ public class RecyclerAdapterOrders extends RecyclerView.Adapter<ViewHolderOrders
     private FirebaseDatabase db;
     private Context context;
     private FirebaseStorage storage;
+    private String userType;
     String[] a;
 
 
-    public RecyclerAdapterOrders(Context context, ArrayList<Order> orders) {
+    public RecyclerAdapterOrders(Context context, ArrayList<Order> orders, String userType) {
         inflater = LayoutInflater.from(context);
         this.context = context;
         this.orders = orders;
+        this.userType = userType;
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
@@ -71,11 +74,11 @@ public class RecyclerAdapterOrders extends RecyclerView.Adapter<ViewHolderOrders
 
         viewHolder.getItem_recipe().setText(current.getNombreReceta());
         viewHolder.getItem_estado().setText(current.getEstado());
-
         viewHolder.getItem().setOnClickListener(action -> {
-//            Intent intent = new Intent(context, RecipeName.class);
-//            intent.putExtra("recipeId", current.getId());
-//            context.startActivity(intent);
+            Intent intent = new Intent(context, MyOrder.class);
+            intent.putExtra("userType", userType);
+            intent.putExtra("orderId", current.getId());
+            context.startActivity(intent);
         });
 
     }

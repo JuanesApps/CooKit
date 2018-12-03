@@ -19,12 +19,13 @@ import icesi.i2t.cookit.lists.RecyclerAdapterOrders;
 import icesi.i2t.cookit.model.Ingredient;
 import icesi.i2t.cookit.model.Order;
 
-public class activity_orders extends AppCompatActivity {
+public class vista_orden extends AppCompatActivity {
 
     private RecyclerView orderList;
     private FirebaseDatabase db;
     private FirebaseAuth auth;
     private ArrayList<Order> orders;
+    private String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class activity_orders extends AppCompatActivity {
         orderList = findViewById(R.id.list_orders);
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
+
+        userType = getIntent().getExtras().getString("userType");
 
         listaOrdenes();
 
@@ -50,11 +53,15 @@ public class activity_orders extends AppCompatActivity {
                 orders = new ArrayList<>();
                 for (DataSnapshot data : ds){
                     Order ord = data.getValue(Order.class);
-                    if (ord.getIdUsuario().equals(auth.getCurrentUser().getUid())){
+                    if (!userType.equals("delivery")){
+                        if (ord.getIdUsuario().equals(auth.getCurrentUser().getUid())){
+                            orders.add(ord);
+                        }
+                    } else {
                         orders.add(ord);
                     }
                 }
-                RecyclerAdapterOrders adapter = new RecyclerAdapterOrders(getApplicationContext(), orders);
+                RecyclerAdapterOrders adapter = new RecyclerAdapterOrders(getApplicationContext(), orders, userType);
                 orderList.setHasFixedSize(true);
                 orderList.setAdapter(adapter);
                 orderList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

@@ -79,7 +79,7 @@ public class SignUp extends AppCompatActivity {
                                     usr.setUser_id(auth.getCurrentUser().getUid());
                                     DatabaseReference reference = db.getReference().child("usuarios").child(usr.getUser_id());
                                     reference.setValue(usr);
-
+                                    Log.e("))))))))))))", "Holaaaaa");
                                     //AQUI ME VOY PARA LA OTRA ACTIVIDAD: PERFIL
                                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(i);

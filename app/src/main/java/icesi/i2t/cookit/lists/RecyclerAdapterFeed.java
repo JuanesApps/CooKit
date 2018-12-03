@@ -140,7 +140,6 @@ public class RecyclerAdapterFeed extends RecyclerView.Adapter<MyViewHolder> {
 
 
         viewHolder.getItem_name().setText(current.getName());
-        viewHolder.getItem_description().setText(current.getDescription());
         viewHolder.setRecipe(current);
         if(current.getLikedby()!=null){
             Log.e("-----------a", current.getLikedby().containsValue(new Like(auth.getCurrentUser().getUid()))+" "
@@ -152,6 +151,7 @@ public class RecyclerAdapterFeed extends RecyclerView.Adapter<MyViewHolder> {
 
 
         viewHolder.getItem().setOnClickListener(action -> {
+            Log.e("-----------len", "Avanza");
             Intent intent = new Intent(context, RecipeName.class);
             intent.putExtra("recipeId", current.getId());
             context.startActivity(intent);

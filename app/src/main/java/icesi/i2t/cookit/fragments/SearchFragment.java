@@ -5,12 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,33 +20,38 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import icesi.i2t.cookit.R;
-import icesi.i2t.cookit.activities.MainActivity;
-import icesi.i2t.cookit.lists.RecyclerAdapterCategory;
-import icesi.i2t.cookit.model.Category;
+import icesi.i2t.cookit.lists.RecyclerAdapterFeed;
+import icesi.i2t.cookit.model.DataBase;
+import icesi.i2t.cookit.model.Like;
+import icesi.i2t.cookit.model.Recipe;
+import icesi.i2t.cookit.model.modelLogic;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Fragcategory.OnFragmentInteractionListener} interface
+ * {@link SearchFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Fragcategory#newInstance} factory method to
+ * Use the {@link Favourites#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragcategory extends Fragment {
+public class SearchFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private RecyclerView list;
-    private RecyclerAdapterCategory adapterCat;
+    private RecyclerAdapterFeed adapterFeed;
     private View vista;
-    private static FirebaseDatabase db;
-    private ArrayList<Category> categories;
-    private MainActivity main;
+    private modelLogic logic;
+    private DataBase dataBase;
+    private String categorie;
+
+    private FirebaseDatabase db;
+    private FirebaseAuth auth;
+    private ArrayList<Recipe> recipes;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -52,8 +59,8 @@ public class Fragcategory extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Fragcategory() {
-        // Required empty public constructor
+    public SearchFragment() {
+
     }
 
     /**
@@ -62,11 +69,11 @@ public class Fragcategory extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragcategory.
+     * @return A new instance of fragment Favourites.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragcategory newInstance(String param1, String param2) {
-        Fragcategory fragment = new Fragcategory();
+    public static SearchFragment newInstance(String param1, String param2) {
+        SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -86,21 +93,24 @@ public class Fragcategory extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        vista = inflater.inflate(R.layout.fragment_favourites, container, false);
         db = FirebaseDatabase.getInstance();
-//        ArrayList<icesi.i2t.cookit.model.Category> categories = new ArrayList<>();
-//        icesi.i2t.cookit.model.Category r = new icesi.i2t.cookit.model.Category();
-//        r.setName("Comida\nRapida");
-//        icesi.i2t.cookit.model.Category r2 = new icesi.i2t.cookit.model.Category();
-//        r2.setName("Comida\nSana");
-//        icesi.i2t.cookit.model.Category r3 = new icesi.i2t.cookit.model.Category();
-//        r3.setName("Comida\nMexicana");
-//        categories.add(r);
-//        categories.add(r2);
-//        categories.add(r3);
-
+        auth = FirebaseAuth.getInstance();
+        vista = inflater.inflate(R.layout.fragment_favourites, container, false);
+        recipes = new ArrayList<>();
+//        Recipe r = new Recipe();
+//        r.setName("Pizza");
+//        r.setCost("Comida italiana");
+//        Recipe r2 = new Recipe();
+//        r2.setName("Arroz");
+//        r2.setCost("Comida");
+//        Recipe r3 = new Recipe();
+//        r3.setName("Ramen");
+//        r3.setCost("Comida tipica");
+//        recipies.add(r);
+//        recipies.add(r2);
+//        recipies.add(r3);
         list = vista.findViewById(R.id.list_favs);
-        getCategoriesList();
+        getQueryCategoryList();
         return vista;
     }
 
@@ -143,23 +153,24 @@ public class Fragcategory extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public void getCategoriesList(){
-        DatabaseReference category_ref = db.getReference().child("categories");
-        categories = new ArrayList<>();
-
-        category_ref.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void getQueryCategoryList(){
+        DatabaseReference recipies_ref = db.getReference().child("recipes");
+        recipes = new ArrayList<>();
+        recipies_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Iterable<DataSnapshot> ds = dataSnapshot.getChildren();
                 for (DataSnapshot data : ds){
-                    Category cat = data.getValue(Category.class);
-                    categories.add(cat);
+                    Recipe rec = data.getValue(Recipe.class);
+                    if(rec.getCategories().containsValue(categorie)){
+                        recipes.add(rec);
+                    }
                 }
-                adapterCat = new RecyclerAdapterCategory(vista.getContext(), categories);
-                adapterCat.setMain(main);
+                Log.e("/////////////", recipes.size()+"");
+                adapterFeed = new RecyclerAdapterFeed(vista.getContext(), recipes);
                 list.setHasFixedSize(true);
-                list.setAdapter(adapterCat);
-                list.setLayoutManager(new GridLayoutManager(vista.getContext(), 2));
+                list.setAdapter(adapterFeed);
+                list.setLayoutManager(new LinearLayoutManager(vista.getContext()));
             }
 
             @Override
@@ -167,10 +178,13 @@ public class Fragcategory extends Fragment {
 
             }
         });
-
     }
 
-    public void setMain(MainActivity main) {
-        this.main = main;
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
     }
 }

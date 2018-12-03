@@ -1,6 +1,7 @@
 package icesi.i2t.cookit.lists;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import icesi.i2t.cookit.R;
+import icesi.i2t.cookit.activities.MainActivity;
+import icesi.i2t.cookit.fragments.SearchFragment;
 import icesi.i2t.cookit.model.Category;
 import icesi.i2t.cookit.model.Recipe;
 
@@ -18,6 +21,7 @@ public class RecyclerAdapterCategory extends RecyclerView.Adapter<ViewHolderCate
     private LayoutInflater inflater;
     private ArrayList<Category> categories;
     private Context context;
+    private MainActivity main;
 
 
     public RecyclerAdapterCategory(Context context, ArrayList<Category> categories){
@@ -40,11 +44,14 @@ public class RecyclerAdapterCategory extends RecyclerView.Adapter<ViewHolderCate
 //        Picasso.get().load(current.getMediumImageUrl()).into(viewHolder.getImage_item());
         viewHolder.getItem_name().setText(current.getName());
 
-//        viewHolder.getItem().setOnClickListener(action -> {
+        viewHolder.getItem().setOnClickListener(action -> {
+            SearchFragment frag = new SearchFragment();
+            frag.setCategorie(current.getId());
+            main.setFragment(frag);
 //            Intent intent = new Intent(context, PlayListView.class);
 //            intent.putExtra("listId", current.getId());
 //            context.startActivity(intent);
-//        });
+        });
 
     }
 
@@ -53,4 +60,11 @@ public class RecyclerAdapterCategory extends RecyclerView.Adapter<ViewHolderCate
         return categories.size();
     }
 
+    public MainActivity getMain() {
+        return main;
+    }
+
+    public void setMain(MainActivity main) {
+        this.main = main;
+    }
 }

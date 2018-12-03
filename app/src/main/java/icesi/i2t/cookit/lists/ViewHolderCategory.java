@@ -39,4 +39,12 @@ public class ViewHolderCategory extends RecyclerView.ViewHolder {
     public void setItem_name(TextView item_name) {
         this.item_name = item_name;
     }
+
+    public LinearLayout getItem() {
+        return item;
+    }
+
+    public void setItem(LinearLayout item) {
+        this.item = item;
+    }
 }

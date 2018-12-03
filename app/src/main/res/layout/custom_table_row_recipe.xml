@@ -9,13 +9,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/camposTexto">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="10dp"
             android:id="@+id/item">
 
             <ImageView
@@ -26,9 +28,10 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/item_name"
@@ -39,21 +42,6 @@
                     android:text="Nombre Item"
                     android:textSize="25dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Descripcion"
-                    android:textSize="23dp" />
-
-                <TextView
-                    android:id="@+id/item_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="descripcion"
-                    android:textSize="23dp" />
-
             </LinearLayout>
 
         </LinearLayout>
@@ -62,7 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="20dp"
-            android:layout_marginVertical="10dp">
+            android:layout_marginTop="2.5dp"
+            android:layout_marginBottom="5dp">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
